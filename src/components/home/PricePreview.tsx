@@ -2,107 +2,101 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, TrendingUp, ShieldAlert } from "lucide-react";
-import { formatCurrency } from "@/lib/utils";
+import { ArrowRight, Sparkles, TrendingUp, HelpCircle } from "lucide-react";
 
 const POPULAR_RATES = [
-  { name: "Newspaper (Raddi)", rate: "₹15/kg", category: "Paper", popular: true },
-  { name: "Cardboard (Cartons)", rate: "₹10/kg", category: "Cardboard", popular: true },
+  { name: "Newspaper", rate: "₹11/kg", category: "Paper", popular: true },
+  { name: "Clothes", rate: "₹4/kg", category: "Fabric", popular: false },
+  { name: "Window / Split AC (2 Ton)", rate: "₹7,100/pc", category: "Appliances", popular: true },
+  { name: "Bike", rate: "₹2,500/pc", category: "Vehicle", popular: true },
+  { name: "UPS", rate: "₹180/pc", category: "Electronics", popular: false },
+  { name: "Computer CPU", rate: "₹400/pc", category: "Electronics", popular: true },
   { name: "Iron (Loha)", rate: "₹30/kg", category: "Metal", popular: true },
-  { name: "Steel (Stainless)", rate: "₹35/kg", category: "Metal", popular: false },
-  { name: "Aluminium", rate: "₹120/kg", category: "Metal", popular: true },
+  { name: "Cardboard (Carton)", rate: "₹12/kg", category: "Paper", popular: true },
   { name: "Copper Wire", rate: "₹650/kg", category: "Metal", popular: true },
   { name: "Brass (Pital)", rate: "₹420/kg", category: "Metal", popular: false },
-  { name: "Plastic Bottles (PET)", rate: "₹20/kg", category: "Plastic", popular: true },
-  { name: "Hard Plastic", rate: "₹18/kg", category: "Plastic", popular: false },
-  { name: "E-Waste / Laptops", rate: "Price after inspection", category: "Electronics", special: true },
-  { name: "Old AC / Fridge", rate: "Price after inspection", category: "Appliances", special: true },
+  { name: "Aluminium", rate: "₹120/kg", category: "Metal", popular: false },
+  { name: "PET Plastic Bottles", rate: "₹20/kg", category: "Plastic", popular: false },
 ];
 
 export function PricePreview() {
   return (
-    <section className="py-20 bg-white border-y border-slate-100">
+    <section id="rates" className="py-20 bg-white border-y border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full uppercase tracking-wider mb-2 border border-emerald-300">
               <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
-              Live Indicative Market Rates
+              Popular Rates
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-              Transparent Scrap Pricing
+              Best Value For Your Scrap
             </h2>
             <p className="text-slate-600 text-base mt-2 max-w-xl">
-              We ensure fair, benchmarked scrap prices. Digital weighing scales mean you get paid
-              for every single gram.
+              We provide benchmarked prices updated daily. Certified digital weighing ensures you are paid accurately for every single gram.
             </p>
           </div>
 
           <Link
             href="/scrap-prices"
-            className="inline-flex items-center gap-2 text-emerald-700 hover:text-emerald-800 font-bold text-sm bg-emerald-50 hover:bg-emerald-100/70 px-5 py-3 rounded-xl border border-emerald-200 transition-all self-start md:self-auto"
+            className="inline-flex items-center gap-2 text-emerald-800 hover:text-emerald-900 font-black text-sm bg-emerald-100 hover:bg-emerald-200/80 px-6 py-3.5 rounded-xl border border-emerald-300 transition-all self-start md:self-auto shadow-xs"
           >
-            <span>View All Scrap Prices</span>
+            <span>View All Scrap Rates</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        {/* Pricing Cards Grid */}
+        {/* Pricing Cards Grid (12 items) */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {POPULAR_RATES.map((item, idx) => (
-            <div
+            <Link
               key={idx}
-              className={`p-5 rounded-2xl border transition-all duration-200 hover:-translate-y-1 hover:shadow-md ${
-                item.special
-                  ? "bg-slate-900 text-white border-slate-800"
-                  : "bg-slate-50/60 border-slate-200/80 hover:bg-white hover:border-emerald-300"
-              }`}
+              href="/scrap-prices"
+              className="p-5 rounded-2xl border border-slate-200 bg-slate-50/70 hover:bg-white hover:border-emerald-400 hover:shadow-md transition-all duration-200 flex flex-col justify-between group"
             >
-              <div className="flex items-center justify-between mb-2">
-                <span
-                  className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
-                    item.special
-                      ? "bg-emerald-500/20 text-emerald-400"
-                      : "bg-emerald-100 text-emerald-800"
-                  }`}
-                >
-                  {item.category}
-                </span>
-                {item.popular && (
-                  <span className="text-[10px] text-amber-600 font-bold flex items-center gap-0.5">
-                    <Sparkles className="w-3 h-3 fill-current" /> Hot
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">
+                    {item.category}
                   </span>
-                )}
+                  {item.popular && (
+                    <span className="text-[10px] text-amber-600 font-bold flex items-center gap-0.5">
+                      <Sparkles className="w-3 h-3 fill-current" /> Hot
+                    </span>
+                  )}
+                </div>
+
+                <h3 className="font-bold text-sm sm:text-base text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  {item.name}
+                </h3>
               </div>
 
-              <h3
-                className={`font-bold text-sm sm:text-base leading-snug truncate ${
-                  item.special ? "text-white" : "text-slate-800"
-                }`}
-              >
-                {item.name}
-              </h3>
-
-              <div className="mt-3 pt-3 border-t border-slate-200/50 flex items-baseline justify-between">
-                <span
-                  className={`text-lg sm:text-xl font-black ${
-                    item.special ? "text-emerald-400 text-sm font-bold" : "text-emerald-700"
-                  }`}
-                >
+              <div className="mt-4 pt-3 border-t border-slate-200/70 flex items-baseline justify-between">
+                <span className="text-xl font-black text-emerald-700">
                   {item.rate}
                 </span>
+                <span className="text-xs text-slate-400 group-hover:text-emerald-600 flex items-center gap-0.5 font-medium">
+                  Sell <ArrowRight className="w-3 h-3" />
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
-        {/* Disclaimer */}
-        <div className="mt-8 p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 text-xs flex items-start gap-3">
-          <ShieldAlert className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-          <p>
-            <strong>Disclaimer:</strong> Prices are indicative and may vary slightly based on
-            location, scrap quality, quantity, and daily wholesale commodity market conditions.
-          </p>
+        {/* Footnote matching ScrapUncle */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-xs">
+          <div className="flex items-center gap-2">
+            <HelpCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span className="font-semibold text-slate-700">
+              * Rates vary according to area and market fluctuations.
+            </span>
+          </div>
+          <Link
+            href="/scrap-prices"
+            className="text-emerald-700 hover:text-emerald-900 font-bold underline shrink-0"
+          >
+            See Full Category Price List &rarr;
+          </Link>
         </div>
       </div>
     </section>

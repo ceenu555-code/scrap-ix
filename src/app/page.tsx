@@ -1,12 +1,13 @@
 ﻿import React from "react";
 import { HeroSection } from "@/components/home/HeroSection";
-import { QuickBookingCard } from "@/components/home/QuickBookingCard";
+import { MediaBanner } from "@/components/home/MediaBanner";
 import { PricePreview } from "@/components/home/PricePreview";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { CategoryGrid } from "@/components/home/CategoryGrid";
+import { BusinessSection } from "@/components/home/BusinessSection";
+import { GreenHeroSection } from "@/components/home/GreenHeroSection";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { ImpactMetrics } from "@/components/home/ImpactMetrics";
-import { BusinessSection } from "@/components/home/BusinessSection";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
@@ -19,17 +20,23 @@ export default function HomePage() {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Quick Booking Card (Hero Overlap) */}
-      <QuickBookingCard />
+      {/* Media Recognitions & Shark Tank Banner */}
+      <MediaBanner />
 
-      {/* Live Scrap Price Preview */}
+      {/* Popular Rates Highlights */}
       <PricePreview />
 
-      {/* 4-Step How It Works */}
+      {/* 3-Step Simple Process */}
       <HowItWorks />
 
-      {/* Scrap Categories */}
+      {/* Scrap Categories We Accept */}
       <CategoryGrid />
+
+      {/* Households & Businesses Differentiator */}
+      <BusinessSection />
+
+      {/* Green Super Heroes of the Month */}
+      <GreenHeroSection />
 
       {/* Why Choose Scrapix */}
       <WhyChooseUs />
@@ -37,17 +44,14 @@ export default function HomePage() {
       {/* Environmental Impact Statistics */}
       <ImpactMetrics />
 
-      {/* B2B Commercial Scrap Section */}
-      <BusinessSection />
-
-      {/* Customer Testimonials */}
+      {/* Loved by Millions of Green Heroes - Testimonials */}
       <Testimonials />
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100/80 px-3 py-1 rounded-full inline-flex items-center gap-1.5">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full inline-flex items-center gap-1.5 border border-emerald-300">
               <HelpCircle className="w-3.5 h-3.5" />
               Common Inquiries
             </span>

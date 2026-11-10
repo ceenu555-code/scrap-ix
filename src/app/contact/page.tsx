@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { isValidIndianPhone } from "@/lib/utils";
 import { useToast } from "@/components/ui/Toast";
+import { COMPANY_CONFIG } from "@/data/companyConfig";
 
 export default function ContactPage() {
   const { showToast } = useToast();
@@ -61,11 +62,12 @@ export default function ContactPage() {
     <div className="min-h-screen bg-slate-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5">
-            <MessageSquare className="w-3.5 h-3.5" /> We Are Here To Help
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 border border-emerald-300">
+            <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
+            We Are Here To Help
           </span>
           <h1 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-            Contact Scrapix
+            Contact {COMPANY_CONFIG.brandName}
           </h1>
           <p className="text-slate-600 text-base">
             Have questions about today&apos;s scrap rates, pickup scheduling, or commercial
@@ -87,7 +89,9 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-bold text-slate-900">Customer Support</h4>
                     <p className="text-slate-500 text-xs mt-0.5">Booking inquiries &amp; feedback</p>
-                    <p className="font-semibold text-emerald-700 mt-1">+91 98765 43210</p>
+                    <a href={`tel:${COMPANY_CONFIG.phone}`} className="font-semibold text-emerald-700 mt-1 block hover:underline">
+                      {COMPANY_CONFIG.phone}
+                    </a>
                   </div>
                 </div>
 
@@ -98,7 +102,9 @@ export default function ContactPage() {
                   <div>
                     <h4 className="font-bold text-slate-900">Business &amp; Bulk Scrap</h4>
                     <p className="text-slate-500 text-xs mt-0.5">Offices, factories &amp; bulk orders</p>
-                    <p className="font-semibold text-blue-700 mt-1">enterprise@scrapix.in</p>
+                    <a href={`mailto:${COMPANY_CONFIG.businessEmail}`} className="font-semibold text-blue-700 mt-1 block hover:underline">
+                      {COMPANY_CONFIG.businessEmail}
+                    </a>
                   </div>
                 </div>
 
@@ -107,19 +113,42 @@ export default function ContactPage() {
                     <Handshake className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900">Partnership &amp; Collector Enquiries</h4>
-                    <p className="text-slate-500 text-xs mt-0.5">Join our certified collector fleet</p>
-                    <p className="font-semibold text-purple-700 mt-1">partners@scrapix.in</p>
+                    <h4 className="font-bold text-slate-900">Partnership &amp; Collector Fleet</h4>
+                    <p className="text-slate-500 text-xs mt-0.5">Join our certified collector network</p>
+                    <a href={`mailto:${COMPANY_CONFIG.email}`} className="font-semibold text-purple-700 mt-1 block hover:underline">
+                      {COMPANY_CONFIG.email}
+                    </a>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 text-xs text-slate-500 space-y-1">
+              {/* Office Addresses */}
+              <div className="space-y-3 pt-3 border-t border-slate-100 text-xs text-slate-600">
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <div className="font-bold text-slate-900 mb-0.5 flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                    {COMPANY_CONFIG.registeredAddress.title}
+                  </div>
+                  <div>{COMPANY_CONFIG.registeredAddress.company}</div>
+                  <div>{COMPANY_CONFIG.registeredAddress.line1}</div>
+                  <div>{COMPANY_CONFIG.registeredAddress.line2}</div>
+                </div>
+
+                <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                  <div className="font-bold text-slate-900 mb-0.5 flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-emerald-600" />
+                    {COMPANY_CONFIG.correspondenceAddress.title}
+                  </div>
+                  <div>{COMPANY_CONFIG.correspondenceAddress.company}</div>
+                  <div>{COMPANY_CONFIG.correspondenceAddress.line1}</div>
+                  <div>{COMPANY_CONFIG.correspondenceAddress.line2}</div>
+                </div>
+              </div>
+
+              <div className="pt-2 text-xs text-slate-500">
                 <p className="flex items-center gap-1.5 font-medium text-slate-700">
-                  <Clock className="w-3.5 h-3.5 text-emerald-600" /> Operational Hours: Mon - Sun, 8:00 AM – 8:00 PM
-                </p>
-                <p className="text-slate-400">
-                  * Fictional phone numbers and emails provided as integration placeholders.
+                  <Clock className="w-3.5 h-3.5 text-emerald-600" />
+                  {COMPANY_CONFIG.supportHours}
                 </p>
               </div>
             </div>
